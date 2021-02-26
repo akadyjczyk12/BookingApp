@@ -15,6 +15,7 @@ import { BookReservationComponent } from './dashboard/book-reservation/book-rese
 import { AdminComponent } from './admin/admin.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditBookComponent } from './admin/edit-book/edit-book.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     NavComponent,
     BookComponent,
     BookReservationComponent,
-    AdminComponent
+    AdminComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,
