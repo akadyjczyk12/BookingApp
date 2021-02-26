@@ -1,0 +1,20 @@
+#books-table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #books-table td, #books-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+    
+  #books-table tr:hover {background-color: rgb(245, 245, 245);}
+  
+  #books-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: orangered;
+    color: white;
+  }

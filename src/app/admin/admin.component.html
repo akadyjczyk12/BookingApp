@@ -1,0 +1,17 @@
+<div class="container">
+    <main class="form-signin text-center">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <h1 class="h3 mb-3 fw-normal">Dodaj nową pozycję</h1>
+
+            <input formControlName="title" class="form-control" placeholder="tytuł"> <br>
+            <input formControlName="author" class="form-control" placeholder="autor"><br>
+            <input formControlName="description" class="form-control" placeholder="opis"> <br>
+            <input (change)="onImgChange()" formControlName="img" class="form-control" placeholder="obrazek html">
+            
+            <img class="image-prev" [src]="imgPrev">
+
+          <button class="w-100 btn btn-lg btn-custom" type="submit">Dodaj</button>
+          <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
+        </form>
+      </main>
+</div>

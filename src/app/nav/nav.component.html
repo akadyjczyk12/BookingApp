@@ -1,0 +1,27 @@
+<ul class="nav justify-content-between">
+  <a class="navbar-brand" [routerLink]="['/dashboard']">Twoja księgarnia</a>
+  <div class="form-inline">
+    <ng-container *ngIf="!user">
+      <li class="nav-item">
+        <a class="nav-link active" [routerLink]="['/login']" routerLinkActive="active" *ngIf="!user">Logowanie</a>
+      </li>
+    </ng-container>
+  
+    <ng-container *ngIf="user">
+      <p class="item">
+        <span>Witaj <b>{{user.username | titlecase}}</b></span> 
+      </p>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/book-reservation']" routerLinkActive="active"  style="cursor: pointer;">Moje rezerwacje</a>
+      </li>
+      <li class="nav-item" *ngIf="user?.roles.includes('admin')">
+        <a class="nav-link" [routerLink]="['/add-book']" routerLinkActive="active" style="cursor: pointer;">Dodaj książkę</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logout()" style="cursor: pointer;">Wyloguj</a>
+      </li>
+    </ng-container>
+
+  </div>
+
+</ul>

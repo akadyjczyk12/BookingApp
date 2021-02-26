@@ -1,0 +1,25 @@
+<div class="container">
+    <ng-container *ngIf="reservedBooks.length > 0">
+        <h3 style="margin: 15px;">Zamówione pozycje</h3>
+        <table id="books-table">
+          <tr>
+            <th>Id</th>
+            <th>Tytuł</th>
+            <th>Autor</th>
+            <th>Podgląd</th>
+            <th>Data rezerwacji</th>
+          </tr>
+          <tr *ngFor="let item of reservedBooks">
+            <td>{{ item.id }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.author }}</td>
+            <td valign="middle" align="center" style="width: 150px;"><img style="width: 100%;" [src]="item.img" /></td>
+            <td>{{ item.date }}</td>
+          </tr>
+        </table>
+    </ng-container>
+    <ng-container *ngIf="reservedBooks.length == 0">
+        <h4 style="margin: 15px;">Brak rezerwacji</h4>
+    </ng-container>
+</div>
+

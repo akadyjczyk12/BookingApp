@@ -1,0 +1,15 @@
+.nav {
+  background-color: #f0f0f0;
+  padding: 10px;
+  box-shadow: 0 0 8px -2px;
+}
+
+.active {
+  color: orangered;
+}
+
+.item {
+  display: flex;
+  margin-bottom: 0;
+  align-items: center;
+}
