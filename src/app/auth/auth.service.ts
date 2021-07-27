@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, ReplaySubject, Subscription } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../_interfaces/User';
@@ -23,13 +23,24 @@ export class AuthService {
         const user = users.find(u => u.username === model.username && u.password === model.password);
         if (user) {
           this.dataSource.next(user);
+          localStorage.setItem('user', JSON.stringify(user));
         }
       })
     );
   }
 
+  getUser(): User {
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
   logout(): void {
     this.dataSource.next(null);
+    localStorage.removeItem('user');
+    this.clearAll();
     this.router.navigateByUrl('/');
+  }
+
+  private clearAll(): void {
+    this.userData$ = of(null);
   }
 }

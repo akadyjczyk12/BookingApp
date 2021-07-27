@@ -12,11 +12,7 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     let auth = false;
     this.authService.userData$.subscribe(u => {
-      if (u) {
-         auth = true;
-      } else {
-        auth = false;
-      }
+      auth = !!u;
     });
 
     if (!auth) {

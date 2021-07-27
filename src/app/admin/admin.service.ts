@@ -17,11 +17,11 @@ export class AdminService {
     return this.http.post<Book>(`${this.apiUrl}/books`, model);
   }
 
-  updateBook(model: Book) {
+  updateBook(model: Book): Observable<Book> {
     return this.http.put<Book>(`${this.apiUrl}/books/${model.id}`, model);
   }
 
-  getBook(id: number) {
+  getBook(id: number): Observable<Book> {
     return this.http.get<Book>(`${this.apiUrl}/books/${id}`);
   }
 }

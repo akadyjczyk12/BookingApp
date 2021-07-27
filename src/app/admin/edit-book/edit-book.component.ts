@@ -13,27 +13,26 @@ import { AdminService } from '../admin.service';
 export class EditBookComponent implements OnInit {
 
   form: FormGroup;
-  book: Book;
   bookId: number;
   imgPrev = 'https://via.placeholder.com/150';
 
-  constructor(private toastr: ToastrService, 
-    private fb: FormBuilder, 
-    private activatedRoute: ActivatedRoute, 
-    private router: Router,
-    private adminService: AdminService) {
+  constructor(private toastr: ToastrService,
+              private fb: FormBuilder,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private adminService: AdminService) {
   }
 
   ngOnInit(): void {
     this.initForm();
     this.bookId = +this.activatedRoute.snapshot.params.id;
-    this.adminService.getBook(this.bookId).subscribe((book: Book) => {  
-      this.imgPrev = book.img;  
+    this.adminService.getBook(this.bookId).subscribe((book: Book) => {
+      this.imgPrev = book.img;
       this.form.patchValue(book);
-    })
+    });
   }
 
-  initForm() {
+  initForm(): void {
     this.form = this.fb.group({
       title: ['', Validators.required],
       author: ['', Validators.required],
@@ -46,9 +45,9 @@ export class EditBookComponent implements OnInit {
     this.imgPrev = this.form.controls.img.value;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     const id = this.bookId;
-    const model = {...this.form.value, id}
+    const model = {...this.form.value, id};
     this.adminService.updateBook(model).subscribe(() => {
       this.toastr.success('Zaktualizowano pomyślnie');
       this.router.navigate(['dashboard']);
