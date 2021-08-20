@@ -11,14 +11,13 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     let auth = false;
-    this.authService.userData$.subscribe(u => {
-      auth = !!u;
+    this.authService.userData$.subscribe(user => {
+      if (!user) {
+        this.router.navigate(['login']);
+      } else {
+        auth = true;
+      }
     });
-
-    if (!auth) {
-      this.router.navigate(['login']);
-    }
-
     return auth;
   }
 }

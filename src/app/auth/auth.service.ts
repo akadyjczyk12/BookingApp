@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, ReplaySubject } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, ReplaySubject } from 'rxjs';
+import { map, shareReplay } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from '../_interfaces/User';
 
@@ -19,6 +19,7 @@ export class AuthService {
 
   login(model: any): Observable<void> {
     return this.http.get(`${this.apiUrl}/users`).pipe(
+      shareReplay(),
       map((users: User[]) => {
         const user = users.find(u => u.username === model.username && u.password === model.password);
         if (user) {
@@ -34,13 +35,9 @@ export class AuthService {
   }
 
   logout(): void {
-    this.dataSource.next(null);
     localStorage.removeItem('user');
-    this.clearAll();
+    this.dataSource.next(null);
     this.router.navigateByUrl('/');
   }
 
-  private clearAll(): void {
-    this.userData$ = of(null);
-  }
 }

@@ -20,10 +20,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.authService.login(this.model).subscribe(() => {
+    this.authService.login(this.model).subscribe();
+    this.authService.userData$.subscribe(user => {
+      if (user) {
         this.router.navigate(['dashboard']);
-    }, err => {
-      console.log(err);
+      }
     });
 
   }

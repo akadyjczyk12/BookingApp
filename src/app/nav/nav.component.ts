@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { User } from '../_interfaces/User';
 
@@ -10,12 +11,10 @@ import { User } from '../_interfaces/User';
 })
 export class NavComponent implements OnInit {
 
-  user: User;
+  user: Observable<User> = this.authService.userData$;
   constructor(public authService: AuthService, private router: Router) { }
 
-  ngOnInit(): void {
-    this.authService.userData$.subscribe(u => this.user = u);
-  }
+  ngOnInit(): void {}
 
   logout(): void {
     this.authService.logout();
